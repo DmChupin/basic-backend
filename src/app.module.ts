@@ -7,10 +7,13 @@ import { HotelsModule } from './models/hotels/hotels.module';
 import { HotelEntity } from './models/hotels/entities/hotel.entity';
 import { RoomEntity } from './models/rooms/entities/room.entity';
 import { ConfigModule } from '@nestjs/config';
+import { UserEntity } from './models/users/entities/user.entity';
+import { UsersModule } from './models/users/users.module';
 
 @Module({
   imports: [
     HotelsModule,
+    UsersModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
     }),
@@ -21,7 +24,7 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [HotelEntity, RoomEntity],
+      entities: [HotelEntity, RoomEntity, UserEntity],
       synchronize: true,
     }),
   ],
