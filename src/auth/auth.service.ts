@@ -3,6 +3,7 @@ import { UsersService } from '../models/users/users.service';
 import { UserEntity } from '../models/users/entities/user.entity';
 import { CreateUserDto } from '../models/users/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -14,15 +15,22 @@ export class AuthService {
   async validateUser(email: string, password: string): Promise<any> {
     const user: UserEntity = await this.userService.findByEmail(email);
 
-    if (user && user.password === password) {
-      const { password, ...content } = user;
-      return content;
+    if (user) {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
+        const { password, ...content } = user;
+        return content;
+      }
+      return null;
     }
     return null;
   }
 
   async register(createUserDto: CreateUserDto) {
     try {
+      const salt = await bcrypt.genSalt();
+      const hashPassword = await bcrypt.hash(createUserDto.password, salt);
+      createUserDto.password = hashPassword;
       const userData = await this.userService.create(createUserDto);
       return this.jwtService.sign({ id: userData.id });
     } catch (err) {
