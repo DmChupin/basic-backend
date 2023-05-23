@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { RoomEntity } from '../../rooms/entities/room.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('hotels')
 export class HotelEntity {
@@ -19,7 +20,10 @@ export class HotelEntity {
   rating: number;
 
   @Column()
-  square: number;
+  stars: number;
+
+  @Column()
+  image: string;
 
   @OneToMany(() => RoomEntity, (rooms) => rooms.hotel)
   rooms: RoomEntity[];
