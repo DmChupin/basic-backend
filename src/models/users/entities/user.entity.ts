@@ -9,8 +9,20 @@ export class UserEntity {
   email: string;
 
   @Column()
-  fullname: string;
+  name: string;
+
+  @Column()
+  surname: string;
 
   @Column()
   password: string;
+
+  @Column()
+  male: string;
+
+  @Column()
+  dateOfBirth: string;
+
+  @Column()
+  notifications: boolean;
 }

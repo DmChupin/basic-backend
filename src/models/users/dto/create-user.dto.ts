@@ -7,12 +7,32 @@ export class CreateUserDto {
   email: string;
 
   @ApiProperty({
-    default: 'Ivan Ivanovich Kruzenshtern',
+    default: 'name',
   })
-  fullname: string;
+  name: string;
+
+  @ApiProperty({
+    default: 'name',
+  })
+  surname: string;
 
   @ApiProperty({
     default: 'qqqwwwe',
+  })
+  male: string;
+
+  @ApiProperty({
+    default: 'qqqwwwe',
+  })
+  dateOfBirth: string;
+
+  @ApiProperty({
+    default: false,
+  })
+  notifications: boolean;
+
+  @ApiProperty({
+    default: 'paswd',
   })
   password: string;
 }
