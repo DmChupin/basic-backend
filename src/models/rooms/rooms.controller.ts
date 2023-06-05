@@ -1,42 +1,27 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Req } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
-import { UpdateRoomDto } from './dto/update-room.dto';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('rooms')
+@ApiTags('rooms')
 export class RoomsController {
-  constructor(private readonly roomsService: RoomsService) {}
+  constructor(
+    private readonly roomsService: RoomsService, // private readonly hotelService: HotelsService,
+  ) {}
 
   @Post()
-  create(@Body() createRoomDto: CreateRoomDto) {
-    return this.roomsService.create(createRoomDto);
+  @ApiBody({ type: CreateRoomDto })
+  create(@Body() body) {
+    const { hotelId, ...createRoomDto } = body;
+
+    return this.roomsService.create(createRoomDto, hotelId);
   }
 
   @Get()
-  findAll() {
-    return this.roomsService.findAll();
-  }
+  findAll(@Req() req) {
+    const id: number | undefined = req?.query?.hotelId;
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.roomsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRoomDto: UpdateRoomDto) {
-    return this.roomsService.update(+id, updateRoomDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.roomsService.remove(+id);
+    return this.roomsService.findAllByHotelId(id);
   }
 }

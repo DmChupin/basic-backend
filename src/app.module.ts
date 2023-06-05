@@ -10,11 +10,13 @@ import { ConfigModule } from '@nestjs/config';
 import { UserEntity } from './models/users/entities/user.entity';
 import { UsersModule } from './models/users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { RoomsModule } from './models/rooms/rooms.module';
 
 @Module({
   imports: [
     HotelsModule,
     UsersModule,
+    RoomsModule,
     AuthModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
