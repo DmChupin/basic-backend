@@ -29,5 +29,5 @@ export class HotelEntity {
   rooms: RoomEntity[];
 
   @OneToMany(() => ReviewEntity, (review) => review.hotel)
-  reviews: RoomEntity[];
+  reviews: ReviewEntity[];
 }

@@ -30,7 +30,7 @@ export class ReviewEntity {
   @JoinColumn()
   hotel: HotelEntity;
 
-  @OneToOne(() => UserEntity, { cascade: true })
-  @JoinColumn({ name: 'id' })
+  @ManyToOne(() => UserEntity, (user) => user.reviews)
+  @JoinColumn()
   user: UserEntity;
 }

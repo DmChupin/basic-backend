@@ -3,17 +3,16 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { UpdateReviewDto } from './dto/update-review.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('reviews')
-@ApiTags('hotels')
+@ApiTags('reviews')
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
@@ -23,8 +22,9 @@ export class ReviewsController {
   }
 
   @Get()
-  findAll() {
-    return this.reviewsService.findAll();
+  findAll(@Req() req) {
+    const params = req?.query;
+    return this.reviewsService.findAll(params);
   }
 
   @Delete(':id')

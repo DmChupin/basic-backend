@@ -20,8 +20,8 @@ export class RoomsController {
 
   @Get()
   findAll(@Req() req) {
-    const id: number | undefined = req?.query?.hotelId;
+    const params = req?.query;
 
-    return this.roomsService.findAllByHotelId(id);
+    return this.roomsService.findAll(params);
   }
 }
