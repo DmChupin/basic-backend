@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { HotelEntity } from '../../hotels/entities/hotel.entity';
 
 @Entity('rooms')
@@ -7,11 +13,27 @@ export class RoomEntity {
   id: number;
 
   @Column()
-  roomNumber: string;
+  type: string;
 
   @Column()
-  roomClass: string;
+  sleeps: number;
 
-  @ManyToOne(() => HotelEntity, (hotel) => hotel.name)
+  @Column()
+  price: number;
+
+  @Column()
+  facilities: string;
+
+  @Column()
+  freeCount: number;
+
+  @Column()
+  bookedCount: number;
+
+  @Column({ nullable: true })
+  hotelId: number;
+
+  @ManyToOne(() => HotelEntity, (hotel) => hotel.rooms)
+  @JoinColumn()
   hotel: HotelEntity;
 }

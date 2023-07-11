@@ -19,7 +19,7 @@ export class HotelsService {
     return this.repository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} hotel`;
+  findOne(id: number): any {
+    return this.repository.findOneBy({ id });
   }
 }

@@ -10,11 +10,16 @@ import { ConfigModule } from '@nestjs/config';
 import { UserEntity } from './models/users/entities/user.entity';
 import { UsersModule } from './models/users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { RoomsModule } from './models/rooms/rooms.module';
+import { ReviewEntity } from './models/reviews/entities/review.entity';
+import { ReviewsModule } from './models/reviews/reviews.module';
 
 @Module({
   imports: [
     HotelsModule,
     UsersModule,
+    RoomsModule,
+    ReviewsModule,
     AuthModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
@@ -26,7 +31,7 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [HotelEntity, RoomEntity, UserEntity],
+      entities: [HotelEntity, RoomEntity, UserEntity, ReviewEntity],
       synchronize: true,
     }),
   ],
