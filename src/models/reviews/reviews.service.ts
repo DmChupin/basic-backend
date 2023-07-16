@@ -12,13 +12,15 @@ export class ReviewsService {
     private repository: Repository<ReviewEntity>,
   ) {}
 
-  create(createReviewDto: CreateReviewDto) {
+  create(createReviewDto) {
     return this.repository.save(createReviewDto);
   }
 
-  findAll(params: CreateReviewDto) {
-    console.log('params: ', params);
-    return this.repository.findBy(params);
+  findAll(params) {
+    return this.repository.find({
+      where: { ...params },
+      relations: ['user'],
+    });
   }
 
   remove(id: number) {

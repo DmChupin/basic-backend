@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { RoomsModule } from './models/rooms/rooms.module';
 import { ReviewEntity } from './models/reviews/entities/review.entity';
 import { ReviewsModule } from './models/reviews/reviews.module';
+import { FacilitiesModule } from './models/facilities/facilities/facilities.module';
+import { FacilityEntity } from './models/facilities/facilities/entities/facility.entity';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { ReviewsModule } from './models/reviews/reviews.module';
     UsersModule,
     RoomsModule,
     ReviewsModule,
+    FacilitiesModule,
     AuthModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
@@ -31,7 +34,13 @@ import { ReviewsModule } from './models/reviews/reviews.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [HotelEntity, RoomEntity, UserEntity, ReviewEntity],
+      entities: [
+        HotelEntity,
+        RoomEntity,
+        UserEntity,
+        ReviewEntity,
+        FacilityEntity,
+      ],
       synchronize: true,
     }),
   ],

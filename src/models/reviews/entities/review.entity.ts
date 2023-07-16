@@ -3,7 +3,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { HotelEntity } from '../../hotels/entities/hotel.entity';
@@ -31,6 +30,6 @@ export class ReviewEntity {
   hotel: HotelEntity;
 
   @ManyToOne(() => UserEntity, (user) => user.reviews)
-  @JoinColumn()
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: UserEntity;
 }
