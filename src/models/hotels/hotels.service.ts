@@ -15,11 +15,22 @@ export class HotelsService {
     return this.repository.save(createHotelDto);
   }
 
-  findAll() {
-    return this.repository.find();
+  findAll(params) {
+    return this.repository.find({
+      where: params,
+      relations: {
+        facilities: true,
+      },
+    });
   }
 
   findOne(id: number): any {
-    return this.repository.findOneBy({ id });
+    //return this.repository.findOneBy({ id });
+    return this.repository.find({
+      where: { id },
+      relations: {
+        facilities: true,
+      },
+    });
   }
 }

@@ -1,6 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { RoomEntity } from '../../rooms/entities/room.entity';
 import { ReviewEntity } from '../../reviews/entities/review.entity';
+import { FacilityEntity } from '../../facilities/facilities/entities/facility.entity';
 
 @Entity('hotels')
 export class HotelEntity {
@@ -30,4 +38,8 @@ export class HotelEntity {
 
   @OneToMany(() => ReviewEntity, (review) => review.hotel)
   reviews: ReviewEntity[];
+
+  @ManyToMany(() => FacilityEntity)
+  @JoinTable()
+  facilities: FacilityEntity[];
 }

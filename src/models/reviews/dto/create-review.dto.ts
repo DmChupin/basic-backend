@@ -2,22 +2,32 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateReviewDto {
   @ApiProperty({
-    default: 1,
+    default: 'Double room',
   })
-  userId: number;
+  type: string;
 
   @ApiProperty({
-    default: 1,
+    default: 2,
   })
-  hotelId: number;
+  sleeps: number;
 
   @ApiProperty({
-    default: 1,
+    default: 1000,
   })
-  rating: number;
+  price: number;
 
   @ApiProperty({
-    default: 'Basic review',
+    default: 'Condition, Refrigirator, Bathroom',
   })
-  text: string;
+  facilities: string;
+
+  @ApiProperty({
+    default: 2,
+  })
+  freeCount: number;
+
+  @ApiProperty({
+    default: 3,
+  })
+  bookedCount: number;
 }
