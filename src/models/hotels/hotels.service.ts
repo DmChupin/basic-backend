@@ -18,9 +18,6 @@ export class HotelsService {
   findAll(params) {
     return this.repository.find({
       where: params,
-      relations: {
-        facilities: true,
-      },
     });
   }
 
@@ -28,9 +25,6 @@ export class HotelsService {
     //return this.repository.findOneBy({ id });
     return this.repository.find({
       where: { id },
-      relations: {
-        facilities: true,
-      },
     });
   }
 }

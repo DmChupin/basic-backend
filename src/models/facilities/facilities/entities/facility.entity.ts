@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { HotelEntity } from '../../../hotels/entities/hotel.entity';
 
 @Entity('facilities')
 export class FacilityEntity {
@@ -13,4 +20,8 @@ export class FacilityEntity {
 
   @Column()
   image: string;
+
+  @ManyToMany(() => HotelEntity)
+  @JoinTable()
+  hotels: HotelEntity[];
 }

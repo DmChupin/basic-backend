@@ -16,8 +16,12 @@ export class FacilitiesService {
     return this.repository.save(createFacilityDto);
   }
 
-  findAll(params) {
-    return this.repository.findBy(params);
+  findAll(hotelId: number) {
+    return this.repository
+      .createQueryBuilder('f')
+      .leftJoin('f.hotels', 'h')
+      .where('h.id = :hId', { hId: hotelId })
+      .getMany();
   }
 
   findOne(id: number) {
