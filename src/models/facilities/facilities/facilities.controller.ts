@@ -23,8 +23,8 @@ export class FacilitiesController {
 
   @Get()
   findAll(@Req() req) {
-    const params = req?.query;
-    return this.facilitiesService.findAll(params);
+    const hotelId: number = +req?.query?.hotelId;
+    return this.facilitiesService.findAll(hotelId);
   }
 
   @Get(':id')
