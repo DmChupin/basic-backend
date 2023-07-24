@@ -13,7 +13,7 @@ export class ReviewEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   text: string;
 
   @Column()

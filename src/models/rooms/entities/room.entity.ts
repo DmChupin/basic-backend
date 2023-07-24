@@ -12,22 +12,22 @@ export class RoomEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   type: string;
 
-  @Column()
+  @Column({ nullable: true })
   sleeps: number;
 
-  @Column()
+  @Column({ nullable: true })
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   facilities: string;
 
-  @Column()
+  @Column({ nullable: true })
   freeCount: number;
 
-  @Column()
+  @Column({ nullable: true })
   bookedCount: number;
 
   @Column({ nullable: true })

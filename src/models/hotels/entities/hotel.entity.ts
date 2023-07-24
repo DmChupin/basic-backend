@@ -13,16 +13,16 @@ export class HotelEntity {
   @Column()
   price: number;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   rating: number;
 
-  @Column()
+  @Column({ nullable: true })
   stars: number;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   @OneToMany(() => RoomEntity, (rooms) => rooms.hotel)

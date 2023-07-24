@@ -18,13 +18,13 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   male: string;
 
-  @Column()
+  @Column({ nullable: true })
   dateOfBirth: string;
 
-  @Column()
+  @Column({ nullable: true })
   notifications: boolean;
 
   @OneToMany(() => ReviewEntity, (review) => review.user)

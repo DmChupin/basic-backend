@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Body, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guards/jwt.guard';
 
 @Controller('rooms')
 @ApiTags('rooms')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class RoomsController {
   constructor(
     private readonly roomsService: RoomsService, // private readonly hotelService: HotelsService,

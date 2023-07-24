@@ -7,12 +7,18 @@ import {
   Param,
   Delete,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { FacilitiesService } from './facilities.service';
 import { CreateFacilityDto } from './dto/create-facility.dto';
 import { UpdateFacilityDto } from './dto/update-facility.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../../auth/guards/jwt.guard';
 
 @Controller('facilities')
+@ApiTags('facilities')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class FacilitiesController {
   constructor(private readonly facilitiesService: FacilitiesService) {}
 
